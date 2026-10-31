@@ -38,7 +38,18 @@
     </section>
 
     <section id="setup">
-        <h2>Setup</h2>
+        <h2 id="setupTitle">Setup</h2>
+        <label><input type="radio" name="difficulty" value="easy">Easy</label>
+        <label><input type="radio" name="difficulty" value="medium" checked>Medium</label>
+        <label><input type="radio" name="difficulty" value="hard">Hard</label>
+
+        <div id="timeOptions">
+            <label><input type="radio" name="time" value="40">40 sec</label>
+            <label><input type="radio" name="time" value="60" checked>60 sec</label>
+            <label><input type="radio" name="time" value="120">2min</label>
+            <input type="number" id="customTime" placeholder="Custom seconds" min="10" max="300">
+        </div>
+        <button id="startBtn">Start</button>
         <button id="backHome">Back</button>
     </section>
     

@@ -3,8 +3,16 @@ const survivalBtn = document.getElementById("survivalBtn");
 const timeAttackBtn = document.getElementById("timeAttackBtn");
 const puzzleBtn = document.getElementById("puzzleBtn");
 const backHome = document.getElementById("backHome");
+const setupTitle = document.getElementById("setupTitle");
+const timeOptions = document.getElementById("timeOptions");
+const startBtn = document.getElementById("startBtn");
 
 
+const gameNames={
+    survival: "Survival",
+    timeAttack: "Time Attack",
+    puzzle: "Equation puzzle"
+};
 let chosenGame = "";
 
 
@@ -15,21 +23,29 @@ function showScreen(name){
     document.getElementById(name).classList.remove("hidden");
 }
 
+function openSetup(game){
+    chosenGame = game;
+    setupTitle.textContent = gameNames[game];
+    if(game === "timeAttack"){
+        timeOptions.classList.remove("hidden");
+    } else {
+        timeOptions.classList.add("hidden");
+    }
+    showScreen("setup");
+}
+
 showScreen("home");
 
 survivalBtn.addEventListener("click",function(){
-    chosenGame = "survival";
-    showScreen("setup");
+    openSetup("survival");
 });
 
 timeAttackBtn.addEventListener("click",function(){
-    chosenGame="timeAttack";
-    showScreen("setup");
+    openSetup("timeAttack");
 });
 
 puzzleBtn.addEventListener("click",function(){
-    chosenGame="puzzle";
-    showScreen("setup");
+    openSetup("puzzle");
 });
 
 backHome.addEventListener("click",function(){
