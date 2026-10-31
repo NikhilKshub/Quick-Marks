@@ -49,7 +49,7 @@ function makeQuestion(difficulty){
     if(randomNumber(1,2) === 1){
         second = makeEndingBig(second);
     }
-    
+
     if(operation === "add"){
         return{
             text: first + " + " + second,
@@ -75,7 +75,7 @@ function makeQuestion(difficulty){
     if(operation === "divide"){
         const divisor = randomNumber(2, size.table);
         const result = randomNumber(2, size.table);
-        let total = divisor * result;
+        const total = divisor * result;
         return{
             text: total + " ÷ " + divisor,
             answer: result
