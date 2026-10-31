@@ -12,8 +12,10 @@ const timeText = document.getElementById("timeText");
 const scoreText = document.getElementById("scoreText");
 const questionText = document.getElementById("questionText");
 const optionButtons = document.querySelectorAll(".option");
-
-
+const resultScore = document.getElementById("resultScore");
+const resultMessage = document.getElementById("resultMessage");
+const playAgain = document.getElementById("playAgain");
+const resultHome = document.getElementById("resultHome");
 
 const gameNames={
     survival: "Survival",
@@ -142,9 +144,56 @@ function showQuestion(){
     startTimer();
 }
 
+function checkSurvivalAnswer(chosen){
+    if(chosen === correctAnswer){
+        score = score + 1;
+        scoreText.textContent = score;
+        showQuestion();
+    } else {
+        endSurvival();
+    }
+}
 
+for (const button of optionButtons){
+    button.addEventListener("click", function(){
+        checkSurvivalAnswer(Number(button.textContent));
+    });
+}
 
+function getMessage(points){
+    if(points < 5){
+        return "A good start. One more run and you will be sharper.";
+    }
+    if(points < 10){
+        return "Getting sharp. Push for ten next time.";
+    }
+    if(points < 20){
+        return "Quick thinking. That was a strong run.";
+    }
+    return "Excellent. This is mental maths at speed.";
+}
 
+function endSurvival(){
+    clearInterval(timerId);
+    resultScore.textContent = score;
+    resultMessage.textContent = getMessage(score);
+    showScreen("result");
+}
+
+function startSurvival(){
+    score = 0;
+    scoreText.textContent = 0;
+    showScreen("survival");
+    showQuestion();
+}
+
+function startGame(){
+    if(chosenGame === "survival"){
+        startSurvival();
+    } else {
+        showScreen(chosenGame);
+    }
+}
 
 function openSetup(game){
     chosenGame = game;
@@ -175,14 +224,21 @@ backHome.addEventListener("click",function(){
     showScreen("home");
 });
 
+playAgain.addEventListener("click", function(){
+    startGame();
+});
+
+resultHome.addEventListener("click", function(){
+    showScreen("home");
+});
+
 startBtn.addEventListener("click", function () {
     difficulty = document.querySelector('input[name="difficulty"]:checked').value;
     timeLimit = Number(document.querySelector('input[name="time"]:checked').value);
     if (customTime.value !== "") {
         timeLimit = Number(customTime.value);
     }
-    console.log(chosenGame, difficulty, timeLimit);
-    showScreen(chosenGame);
+    startGame();
 });
 
 

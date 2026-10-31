@@ -40,18 +40,47 @@
 
     <section id="setup">
         <h2 id="setupTitle">Setup</h2>
-        <label><input type="radio" name="difficulty" value="easy">Easy</label>
-        <label><input type="radio" name="difficulty" value="medium" checked>Medium</label>
-        <label><input type="radio" name="difficulty" value="hard">Hard</label>
+        <p class="label">Difficulty</p>
+        <div class="choices">
+            <label class="choice">
+                <input type="radio" name="difficulty" value="easy">
+                <span>Easy</span>
+            </label>
 
+            <label class="choice">
+                <input type="radio" name="difficulty" value="medium" checked>
+                <span>Medium</span>
+            </label>
+
+            <label class="choice">
+                <input type="radio" name="difficulty" value="hard">
+                <span>Hard</span>
+            </label>
+        </div>
         <div id="timeOptions">
-            <label><input type="radio" name="time" value="40">40 sec</label>
-            <label><input type="radio" name="time" value="60" checked>60 sec</label>
-            <label><input type="radio" name="time" value="120">2min</label>
+            <p class="label">Time</p>
+            <div class="choices">
+                <label class="choice">
+                    <input type="radio" name="time" value="40">
+                    <span>40 sec</span>
+                </label>
+
+                <label class="choice">
+                    <input type="radio" name="time" value="60" checked>
+                    <span>60 sec</span>
+                </label>
+
+                <label class="choice">
+                    <input type="radio" name="time" value="120">
+                    <span>2 min</span>
+                </label>
+            </div>
             <input type="number" id="customTime" placeholder="Custom seconds" min="10" max="300">
         </div>
-        <button id="startBtn">Start</button>
-        <button id="backHome">Back</button>
+        <div class="buttonRow">
+            <button id="startBtn" class="mainBtn">Start</button>
+            <button id="backHome" class="plainBtn">Back</button>
+        </div>
     </section>
     
     <section id="survival">
@@ -82,8 +111,10 @@
         <h2>Result</h2>
         <p>Score: <b id="resultScore">0</b></p>
         <p id="resultMessage"></p>
-        <button id="playAgain">Play again</button>
-        <button id="resultHome">Home</button>
+        <div class="buttonRow">
+            <button id="playAgain">Play again</button>
+            <button id="resultHome">Home</button>
+        </div>
     </section>
 
 

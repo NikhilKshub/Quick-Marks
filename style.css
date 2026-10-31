@@ -50,28 +50,47 @@ h2{
 }
 p{margin:0; line-height:1.5;}
 
+.gameCard, .option, .mainBtn, .plainBtn{
+    background:#FBF7EE;
+    color:var(--ink);
+    font-family:inherit;
+    border: 2px solid var(--ink);
+    box-shadow:5px 5px 0 var(--ink);
+    cursor:pointer;
+    transition:transform 0.1s, box-shadow 0.1s;
+}
+
+.buttonRow{
+    display:flex;
+    gap:14px;
+    margin-top: 32px;
+}
+
+.mainBtn, .plainBtn{
+    padding:14px 28px;
+    font-size:18px;
+    font-weight: 800;
+}
+.mainBtn{
+    background:var(--red);
+    color:#FBF7EE;
+}
+
 .gameCard{
     display: block;
     width:100%;
     text-align: left;
     margin-top:16px;
     padding: 16px 18px;
-    background: #FBF7EE;
-    color:var(--ink);
-    border: 2px solid var(--ink);
-    box-shadow: 5px 5px 0 var(--ink);
-    font-family: inherit;
-    font-size: 16px;
-    cursor:pointer;
-    transition: transform 0.1s, box-shadow 0.1s;
+    font-size:16px;
 }
 
-.gameCard:hover{
+.gameCard:hover, .option:hover, .mainBtn:hover, .plainBtn:hover {
     transform:translate(-2px,-2px);
     box-shadow:7px 7px 0 var(--ink);
 }
 
-.gameCard:active{
+.gameCard:active, .option:active, .mainBtn:active, .plainBtn:active {
     transform:translate(5px,5px);
     box-shadow: 0 0 0 var(--ink);
 }
@@ -95,3 +114,14 @@ p{margin:0; line-height:1.5;}
 #survivalBtn{border-left: 10px solid var(--red);}
 #timeAttackBtn{border-left: 10px solid var(--yellow);}
 #puzzleBtn{border-left:10px solid var(--green);}
+
+#timerBar{
+    height:12px;
+    background:#ccc;
+}
+
+#timerFill{
+    height:100%;
+    width:100%;
+    background: red;
+}
