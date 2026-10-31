@@ -34,13 +34,22 @@ function showScreen(name){
     document.getElementById(name).classList.remove("hidden");
 }
 
-const operations = ["add","subtract"];
+// Questions
+const operations = ["add","subtract", "multiply", "divide"];
+
+function makeEndingBig(number){
+    return Math.floor(number / 10) * 10 + randomNumber(6,9);
+}
 
 function makeQuestion(difficulty){
     const size = sizes[difficulty];
     const operation = operations[randomNumber(0, operations.length - 1)];
     let first = randomNumber(2, size.max);
     let second = randomNumber(2, size.max);
+    if(randomNumber(1,2) === 1){
+        second = makeEndingBig(second);
+    }
+    
     if(operation === "add"){
         return{
             text: first + " + " + second,
@@ -55,7 +64,40 @@ function makeQuestion(difficulty){
             answer: big - small
         };
     }
+    if(operation === "multiply"){
+        const left = randomNumber(2, size.table);
+        const right = randomNumber(2, size.table);
+        return{
+            text: left + " × " + right,
+            answer:left * right
+        };
+    }
+    if(operation === "divide"){
+        const divisor = randomNumber(2, size.table);
+        const result = randomNumber(2, size.table);
+        let total = divisor * result;
+        return{
+            text: total + " ÷ " + divisor,
+            answer: result
+        };
+    }
 }
+
+// Options 
+function makeOptions(answer){
+    const options = [answer];
+    while (options.length < 4){
+        const wrong = answer + randomNumber(-10, 10);
+        if(wrong >= 0 && !options.includes(wrong)){
+            options.push(wrong);
+        }
+    }
+    options.sort(function(){
+        return Math.random() - 0.5;
+    });
+    return options;
+}
+
 
 
 
