@@ -1,6 +1,5 @@
 :root {
     --paper: #F3EBDD;
-    --lines: #DDD2BD;
     --ink: #1B2A41;
     --green: #2F6B4F;
     --red: #C8372D;
@@ -13,7 +12,6 @@ body {
     margin: 0;
     background-color: var(--paper);
     background-image: linear-gradient(to right, rgba(148, 163, 184, 0.35) 1px, transparent 1px), linear-gradient(to bottom, rgba(148, 163, 184, 0.35) 1px, transparent 1px);
-    background-size: 24px 24px;
     background-size: 28px 28px;
     color: var(--ink);
     font-family: "Schibsted Grotesk", sans-serif;
@@ -37,3 +35,63 @@ h1{
     margin:0;
     flex-grow:1;
 }
+
+section{
+    max-width: 640px;
+    margin:0 auto;
+    padding: 24px 20px;
+}
+
+h2{
+    font-family:"Young Serif", serif;
+    font-size: 30px;
+    font-weight:400;
+    margin: 0 0 8px;
+}
+p{margin:0; line-height:1.5;}
+
+.gameCard{
+    display: block;
+    width:100%;
+    text-align: left;
+    margin-top:16px;
+    padding: 16px 18px;
+    background: #FBF7EE;
+    color:var(--ink);
+    border: 2px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    font-family: inherit;
+    font-size: 16px;
+    cursor:pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.gameCard:hover{
+    transform:translate(-2px,-2px);
+    box-shadow:7px 7px 0 var(--ink);
+}
+
+.gameCard:active{
+    transform:translate(5px,5px);
+    box-shadow: 0 0 0 var(--ink);
+}
+.gameCard strong{
+    display:block;
+    font-family:"Young Serif", serif;
+    font-weight:400;
+    font-size:24px;
+}
+
+.gameCard span{
+    display: block;
+    margin-top: 4px;
+}
+
+.gameCard span:last-child{
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+#survivalBtn{border-left: 10px solid var(--red);}
+#timeAttackBtn{border-left: 10px solid var(--yellow);}
+#puzzleBtn{border-left:10px solid var(--green);}
