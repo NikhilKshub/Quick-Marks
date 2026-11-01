@@ -115,13 +115,108 @@ p{margin:0; line-height:1.5;}
 #timeAttackBtn{border-left: 10px solid var(--yellow);}
 #puzzleBtn{border-left:10px solid var(--green);}
 
-#timerBar{
-    height:12px;
-    background:#ccc;
+#timerBar {
+    height: 18px;
+    background: #FBF7EE;
+    border: 2px solid var(--ink);
+    margin-top: 16px;
 }
 
 #timerFill{
     height:100%;
     width:100%;
-    background: red;
+    background: var(--red);
+    transition: width 0.1s linear;
+}
+
+#stats{
+    display:flex;
+    justify-content:space-between;
+    margin-top:14px;
+    font-size:20px;
+}
+
+#stats b {
+    font-family:"Young Serif", serif;
+    font-weight:400;
+    font-size:28px;
+}
+
+.label{
+    margin-top: 24px;
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+}
+
+.choices{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top:8px;
+}
+
+.choice input{
+    position:absolute;
+    opacity:0;
+}
+
+.choice span{
+    display:inline-block;
+    padding: 10px 18px;
+    background: #FBF7EE;
+    border: 2px solid var(--ink);
+    font-weight: 600;
+    cursor:pointer;
+}
+
+.choice input:checked + span{
+    background: var(--ink);
+    color:var(--paper);
+}
+
+.choice input:focus-visible + span{outline:3px solid var(--yellow);}
+
+#customTime{
+    margin-top:12px;
+    padding:10px 12px;
+    width:100%;
+    max-width:220px;
+    font-family: inherit;
+    font-size: 16px;
+    background: #FBF7EE;
+    color:var(--ink);
+    border: 2px solid var(--ink);
+}
+
+#questionText{
+    margin: 48px 0;
+    text-align: center;
+    font-family:"Young Serif", serif;
+    font-size: clamp(34px, 9vw, 56px);
+    line-height:1.1;
+}
+
+#optionsBox{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap: 16px;
+}
+
+.option{
+    padding: 24px 10px;
+    font-family:"Young Serif", serif;
+    font-size: 34px;
+}
+
+#resultScore{
+    font-family:"Young Serif", serif;
+    font-size: 96px;
+    line-height:1.1;
+    color:var(--red);
+}
+#resultMessage{
+    font-size:22px;
+    max-width:480px;
 }

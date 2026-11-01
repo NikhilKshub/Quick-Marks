@@ -11,7 +11,12 @@ const timerFill = document.getElementById("timerFill");
 const timeText = document.getElementById("timeText");
 const scoreText = document.getElementById("scoreText");
 const questionText = document.getElementById("questionText");
-const optionButtons = document.querySelectorAll(".option");
+const optionButtons = document.querySelectorAll("#survival .option");
+const attackFill = document.getElementById("attackFill");
+const attackTimeText = document.getElementById("attackTimeText");
+const attackScoreText = document.getElementById("attackScoreText");
+const attackQuestion = document.getElementById("attackQuestion");
+const attackButtons = document.querySelectorAll("#timeAttack .option");
 const resultScore = document.getElementById("resultScore");
 const resultMessage = document.getElementById("resultMessage");
 const playAgain = document.getElementById("playAgain");
@@ -128,20 +133,43 @@ function startTimer(){
         timerFill.style.width = timeLeft / totalTime * 100 + "%";
         timeText.textContent = Math.ceil(timeLeft / 1000);
         if(timeLeft <= 0){
-            endSurvival();
+            endGame();
         }
     }, 100);
 }
 
-function showQuestion(){
+function startAttackTimer(){
+    clearInterval(timerId);
+    totalTime = timeLimit * 1000;
+    timeLeft = totalTime;
+    attackFill.style.width = "100%";
+    attackTimeText.textContent = timeLimit;
+    timerId = setInterval(function(){
+        timeLeft = timeLeft - 100;
+        attackFill.style.width = timeLeft / totalTime * 100 + "%";
+        attackTimeText.textContent = Math.max(0, Math.ceil(timeLeft / 1000));
+        if(timeLeft <= 0){
+            endGame();
+        }
+    }, 100);
+}
+
+function fillQuestion(textElement, buttons) {
     const question = makeQuestion(difficulty);
     correctAnswer = question.answer;
-    questionText.textContent = question.text + " = ?";
+    textElement.textContent = question.text + " = ?";
     const options = makeOptions(correctAnswer);
-    for(let i = 0; i < 4; i++){
-        optionButtons[i].textContent = options[i];
+    for (let i = 0; i < 4; i++) {
+        buttons[i].textContent = options[i];
     }
+}
+
+function showQuestion(){
+    fillQuestion(questionText, optionButtons);
     startTimer();
+}
+function showAttackQuestion(){
+    fillQuestion(attackQuestion, attackButtons);
 }
 
 function checkSurvivalAnswer(chosen){
@@ -150,7 +178,7 @@ function checkSurvivalAnswer(chosen){
         scoreText.textContent = score;
         showQuestion();
     } else {
-        endSurvival();
+        endGame();
     }
 }
 
@@ -165,7 +193,7 @@ function getMessage(points){
         return "A good start. One more run and you will be sharper.";
     }
     if(points < 10){
-        return "Getting sharp. Push for ten next time.";
+        return "Getting sharp. Push for 10 next time.";
     }
     if(points < 20){
         return "Quick thinking. That was a strong run.";
@@ -173,7 +201,7 @@ function getMessage(points){
     return "Excellent. This is mental maths at speed.";
 }
 
-function endSurvival(){
+function endGame(){
     clearInterval(timerId);
     resultScore.textContent = score;
     resultMessage.textContent = getMessage(score);
@@ -240,6 +268,15 @@ startBtn.addEventListener("click", function () {
     }
     startGame();
 });
+
+
+
+
+
+
+
+// i also got to know about a shortcut code today which is ctrl + H it allows you to replace one thing with another thing and you can do it for a single or all fo the data and it was crazy to do 
+
 
 
 

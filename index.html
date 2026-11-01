@@ -85,13 +85,15 @@
     
     <section id="survival">
         <h2>Survival</h2>
-        <div id="timerBar">
-            <div id="timerFill"></div>
+        <div class="timerBar">
+            <div id="timerFill" class="timerFill"></div>
         </div>
-        <p>Time: <b id="timeText">10</b></p>
-        <p>Score: <b id="scoreText">0</b></p>
-        <p id="questionText"></p>
-        <div id="optionsBox">
+        <div class="stats">
+            <p>Time: <b id="timeText">5</b></p>
+            <p>Score: <b id="scoreText">0</b></p>
+        </div>
+        <p id="questionText" class="question"></p>
+        <div class="optionsBox">
             <button class="option"></button>
             <button class="option"></button>
             <button class="option"></button>
@@ -101,19 +103,36 @@
     
     <section id="timeAttack">
         <h2>Time Attack</h2>
+        <div class="timerBar">
+            <div id="attackFill" class="timerFill"></div>
+        </div>
+        <div class="stats">
+            <p>Time: <b id="attackTimeText">60</b></p>
+            <p>Score: <b id="attackScoreText">0</b></p>
+        </div>
+
+        <p id="attackQuestion" class="question"></p>
+        <div class="optionsBox">
+            <button class="option"></button>
+            <button class="option"></button>
+            <button class="option"></button>
+            <button class="option"></button>
+        </div>
     </section>
     
     <section id="puzzle">
         <h2>Puzzle</h2>
     </section>
     
+    
     <section id="result">
         <h2>Result</h2>
-        <p>Score: <b id="resultScore">0</b></p>
+        <p class="label">Your Score</p>
+        <p id="resultScore">0</p>
         <p id="resultMessage"></p>
         <div class="buttonRow">
-            <button id="playAgain">Play again</button>
-            <button id="resultHome">Home</button>
+            <button id="playAgain" class="mainBtn">Play again</button>
+            <button id="resultHome" class="plainBtn">Home</button>
         </div>
     </section>
 
@@ -124,8 +143,4 @@
 
     <script src="script.js"></script>
 </body>
-
-
-
-
 </html>
