@@ -4,6 +4,7 @@ const timeAttackBtn = document.getElementById("timeAttackBtn");
 const puzzleBtn = document.getElementById("puzzleBtn");
 const backHome = document.getElementById("backHome");
 const setupTitle = document.getElementById("setupTitle");
+const ruleText = document.getElementById("ruleText");
 const timeOptions = document.getElementById("timeOptions");
 const startBtn = document.getElementById("startBtn");
 const customTime = document.getElementById("customTime");
@@ -26,6 +27,12 @@ const gameNames={
     survival: "Survival",
     timeAttack: "Time Attack",
     puzzle: "Equation Puzzle"
+};
+
+const gameRules={
+    survival: "One wrong answer or a timeout ends the run.The timer gets shorter as your score grows.",
+    timeAttack: "Answer as many as you can before time runs out. A wrong answer costs 2 seconds.",
+    puzzle: "Fill every box so each equation is true. Each tile can be used once."
 };
 
 let chosenGame = "";
@@ -154,6 +161,30 @@ function startAttackTimer(){
     }, 100);
 }
 
+function checkAttackAnswer(chosen){
+    if(chosen === correctAnswer){
+        score = score+1;
+        attackScoreText.textContent = score;
+    } else {
+        timeLeft = timeLeft - 2000;
+    }
+    showAttackQuestion();
+}
+
+function startAttack(){
+    score = 0;
+    attackScoreText.textContent = 0;
+    showScreen("timeAttack");
+    showAttackQuestion();
+    startAttackTimer();
+}
+
+for(const button of attackButtons){
+    button.addEventListener("click", function(){
+        checkAttackAnswer(Number(button.textContent));
+    });
+}
+
 function fillQuestion(textElement, buttons) {
     const question = makeQuestion(difficulty);
     correctAnswer = question.answer;
@@ -218,14 +249,18 @@ function startSurvival(){
 function startGame(){
     if(chosenGame === "survival"){
         startSurvival();
-    } else {
+    } else if(chosenGame === "timeAttack"){
+        startAttack();
+    } else{
         showScreen(chosenGame);
     }
+    
 }
 
 function openSetup(game){
     chosenGame = game;
     setupTitle.textContent = gameNames[game];
+    ruleText.textContent = gameRules[game];
     if(game === "timeAttack"){
         timeOptions.classList.remove("hidden");
     } else {
@@ -265,6 +300,7 @@ startBtn.addEventListener("click", function () {
     timeLimit = Number(document.querySelector('input[name="time"]:checked').value);
     if (customTime.value !== "") {
         timeLimit = Number(customTime.value);
+        timeLimit = Math.min(300, Math.max(10, timeLimit));
     }
     startGame();
 });
@@ -274,8 +310,6 @@ startBtn.addEventListener("click", function () {
 
 
 
-
-// i also got to know about a shortcut code today which is ctrl + H it allows you to replace one thing with another thing and you can do it for a single or all fo the data and it was crazy to do 
 
 
 

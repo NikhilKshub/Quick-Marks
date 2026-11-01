@@ -115,28 +115,28 @@ p{margin:0; line-height:1.5;}
 #timeAttackBtn{border-left: 10px solid var(--yellow);}
 #puzzleBtn{border-left:10px solid var(--green);}
 
-#timerBar {
+.timerBar {
     height: 18px;
     background: #FBF7EE;
     border: 2px solid var(--ink);
     margin-top: 16px;
 }
 
-#timerFill{
+.timerFill{
     height:100%;
     width:100%;
     background: var(--red);
     transition: width 0.1s linear;
 }
 
-#stats{
+.stats{
     display:flex;
     justify-content:space-between;
     margin-top:14px;
     font-size:20px;
 }
 
-#stats b {
+.stats b {
     font-family:"Young Serif", serif;
     font-weight:400;
     font-size:28px;
@@ -190,7 +190,7 @@ p{margin:0; line-height:1.5;}
     border: 2px solid var(--ink);
 }
 
-#questionText{
+.question{
     margin: 48px 0;
     text-align: center;
     font-family:"Young Serif", serif;
@@ -198,7 +198,7 @@ p{margin:0; line-height:1.5;}
     line-height:1.1;
 }
 
-#optionsBox{
+.optionsBox{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap: 16px;
@@ -220,3 +220,12 @@ p{margin:0; line-height:1.5;}
     font-size:22px;
     max-width:480px;
 }
+
+.rule{
+    margin-top:12px;
+    padding:10px 14px;
+    border-left: 4px solid var(--red);
+    background: #FBF7EE;
+    font-size:20px;
+}
+
