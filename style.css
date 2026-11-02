@@ -263,4 +263,21 @@ p{margin:0; line-height:1.5;}
     font-family:"Young Serif", serif;
     font-size:26px;
 }
+.tile.selected {background: var(--yellow);}
+
+.tile.used{
+    opacity: 0.25;
+    box-shadow: none;
+    pointer-events: none;
+}
+
+.equation.right .box{
+    background-color:var(--green);
+    background:#E3EFE6;
+}
+
+.equation.wrong .box{
+    border-color:var(--red);
+    background: #F7E1DE;
+}
 
