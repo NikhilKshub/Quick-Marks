@@ -129,38 +129,6 @@ function getQuestionTime(){
     return Math.max(3, 5 - Math.floor(score / 5)) * 1000;
 }
 
-function startTimer(){
-    clearInterval(timerId);
-    totalTime = getQuestionTime();
-    timeLeft = totalTime;
-    timerFill.style.width = "100%";
-    timeText.textContent = totalTime / 1000;
-    timerId = setInterval(function(){
-        timeLeft = timeLeft - 100;
-        timerFill.style.width = timeLeft / totalTime * 100 + "%";
-        timeText.textContent = Math.ceil(timeLeft / 1000);
-        if(timeLeft <= 0){
-            endGame();
-        }
-    }, 100);
-}
-
-function startAttackTimer(){
-    clearInterval(timerId);
-    totalTime = timeLimit * 1000;
-    timeLeft = totalTime;
-    attackFill.style.width = "100%";
-    attackTimeText.textContent = timeLimit;
-    timerId = setInterval(function(){
-        timeLeft = timeLeft - 100;
-        attackFill.style.width = timeLeft / totalTime * 100 + "%";
-        attackTimeText.textContent = Math.max(0, Math.ceil(timeLeft / 1000));
-        if(timeLeft <= 0){
-            endGame();
-        }
-    }, 100);
-}
-
 function checkAttackAnswer(chosen){
     if(chosen === correctAnswer){
         score = score+1;
@@ -176,7 +144,7 @@ function startAttack(){
     attackScoreText.textContent = 0;
     showScreen("timeAttack");
     showAttackQuestion();
-    startAttackTimer();
+    startCountdown(attackFill, attackTimeText, timeLimit * 1000);
 }
 
 for(const button of attackButtons){
@@ -214,7 +182,7 @@ function startCountdown(fillElement, textElement, ms){
 
 function showQuestion(){
     fillQuestion(questionText, optionButtons);
-    startTimer();
+    startCountdown(timerFill, timeText, getQuestionTime());
 }
 function showAttackQuestion(){
     fillQuestion(attackQuestion, attackButtons);
@@ -274,6 +242,7 @@ function startGame(){
     
 }
 
+
 function openSetup(game){
     chosenGame = game;
     setupTitle.textContent = gameNames[game];
@@ -285,7 +254,6 @@ function openSetup(game){
     }
     showScreen("setup");
 }
-
 showScreen("home");
 
 survivalBtn.addEventListener("click",function(){
