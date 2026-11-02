@@ -272,7 +272,7 @@ p{margin:0; line-height:1.5;}
 }
 
 .equation.right .box{
-    background-color:var(--green);
+    border-color:var(--green);
     background:#E3EFE6;
 }
 
