@@ -50,7 +50,7 @@ h2{
 }
 p{margin:0; line-height:1.5;}
 
-.gameCard, .option, .mainBtn, .plainBtn{
+.gameCard, .option, .mainBtn, .plainBtn, .tile{
     background:#FBF7EE;
     color:var(--ink);
     font-family:inherit;
@@ -85,12 +85,12 @@ p{margin:0; line-height:1.5;}
     font-size:16px;
 }
 
-.gameCard:hover, .option:hover, .mainBtn:hover, .plainBtn:hover {
+.gameCard:hover, .option:hover, .mainBtn:hover, .plainBtn:hover, .tile:hover{
     transform:translate(-2px,-2px);
     box-shadow:7px 7px 0 var(--ink);
 }
 
-.gameCard:active, .option:active, .mainBtn:active, .plainBtn:active {
+.gameCard:active, .option:active, .mainBtn:active, .plainBtn:active, .tile:active {
     transform:translate(5px,5px);
     box-shadow: 0 0 0 var(--ink);
 }
@@ -227,5 +227,40 @@ p{margin:0; line-height:1.5;}
     border-left: 4px solid var(--red);
     background: #FBF7EE;
     font-size:20px;
+}
+
+.equation{
+    display: grid;
+    grid-template-columns:1fr 36px 1fr 36px 64px;
+    align-items:center;
+    gap:8px;
+    margin-top:12px;
+    text-align:center;
+    font-family:"Young Serif", serif;
+    font-size:28px;
+}
+
+.box{
+    height: 64px;
+    background:#FBF7EE;
+    color:var(--ink);
+    font-family:inherit;
+    font-size:28px;
+    border:2px solid var(--ink);
+    cursor:pointer;
+}
+.box:empty{border-style:dashed;}
+
+#tiles{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-top:32px;
+}
+
+.tile{
+    height:64px;
+    font-family:"Young Serif", serif;
+    font-size:26px;
 }
 
