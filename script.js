@@ -195,6 +195,23 @@ function fillQuestion(textElement, buttons) {
     }
 }
 
+function startCountdown(fillElement, textElement, ms){
+    clearInterval(timerId);
+    totalTime=ms;
+    timeLeft=ms;
+    fillElement.style.width = "100%";
+    textElement.textContent=ms / 1000;
+    timerId = setInterval(function(){
+        timeLeft = timeLeft - 100;
+        fillElement.style.width = timeLeft / totalTime * 100 + "%";
+        textElement.textContent = Math.max(0, Math.ceil(timeLeft / 1000));
+        if(timeLeft <=0 ){
+            endGame();
+        }
+    },100);
+}
+
+
 function showQuestion(){
     fillQuestion(questionText, optionButtons);
     startTimer();
