@@ -3,17 +3,15 @@ A mental maths trainer with three timed games.
 **Live demo:** [LIVE DEMO](https://nikhilkshub.github.io/Quick-Marks/)
 
 ## Screenshots
-| Home | Survival |
-| --- | --- |
-| ![Home screen](screenshots/home.png) | ![Survival game](screenshots/survival.png) |
+### Home and Survival
+![Home screen](screenshots/home.png) ![Survival game](screenshots/survival.png)
 
-| Time Attack | Equation Puzzle |
-| --- | --- |
-| ![Time Attack game](screenshots/time-attack.png) | ![Equation Puzzle game](screenshots/puzzle.png) |
+### Time Attack and Equation Puzzle
+![Time Attack game](screenshots/time-attack.png) ![Equation Puzzle game](screenshots/puzzle.png)
 
-| Result screen|
-| --- |
-| ![Result screen](screenshots/result.png) |
+### Result screen
+![Result screen](screenshots/result.png)
+
 
 ## What it is
 Quick Marks is a small website for practicing mental arithmetic under time pressure. You pick one of three games, choose a difficulty, and try to beat your own best score. The game have their respective best scores also and localstorage stores all the best score 
