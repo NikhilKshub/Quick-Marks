@@ -54,6 +54,7 @@ let timeLeft = 0;
 let totalTime = 5000;
 let timerId= null;
 let tileNumbers = [];
+let draggedTile = -1;
 let boxTile = [];
 let rowOps = [];
 let rowResults = [];
@@ -207,6 +208,29 @@ function drawBoard(){
     }
 }
 
+function calculate(op, left, right){
+    if(op === "+"){
+        return left + right;
+    }
+    if(op === "-"){
+        return left - right;
+    }
+    if (op === "×") {    
+        return left * right;
+    }
+    return left / right;
+}
+
+function checkRow(r){
+    const leftTile = boxTile[r * 2];
+    const rightTile = boxTile[r * 2 +1];
+    if(leftTile === -1 || rightTile === -1){
+        return;
+    }
+    const value = calculate(rowOps[r], tileNumbers[leftTile], tileNumbers[rightTile]);
+    rowState[r] = value === rowResults[r] ? "right" : "wrong";
+}
+
 function startPuzzle(){
     boardsSolved = 0;
     puzzleScoreText.textContent = 0;
@@ -314,8 +338,66 @@ function getMessage(points){
     return "Excellent. This is mental maths at speed.";
 }
 
+function getPuzzleMessage(sec){
+    if(sec < 60){
+        return "Lightning fast. That is top-level mental maths.";
+    }
+    if(sec < 120){
+        return "Sharp work. Can you beat 60 seconds?";
+    }
+    if(sec < 200){
+        return "Steady hands. Try to go faster next time.";
+    }
+    return "You finished it. One more run and you will be quicker.";
+}
+
+function endPuzzle(){
+    clearInterval(timerId);
+    resultLabel.textContent = "Your time";
+    resultScore.textContent = seconds + "s";
+    resultMessage.textContent = getPuzzleMessage(seconds);
+    setTimeout(function(){
+        showScreen("result");
+    }, 800);
+}
+
+function boardDone(){
+    boardsSolved = boardsSolved + 1;
+    puzzleScoreText.textContent = boardsSolved;
+    if(boardsSolved === boardsToSolve){
+        endPuzzle();
+    } else {
+        setTimeout(function(){
+            makeBoard();
+            drawBoard();
+        }, 800);
+    }
+}
+
+function placeTile(tileIndex, boxIndex){
+    if(boxTile.includes(tileIndex)){
+        return;
+    }
+    if(boxTile[boxIndex] !== -1){
+        return;
+    }
+    boxTile[boxIndex] = tileIndex;
+    checkRow(Math.floor(boxIndex / 2));
+    drawBoard();
+    let allRight = true;
+    for(const state of rowState){
+        if(state !== "right"){
+            allRight = false;
+        }
+    }
+    if(allRight){
+        boardDone();
+    }
+}
+
 function endGame(){
     clearInterval(timerId);
+    resultLabel.textContent = "Your score";
     resultScore.textContent = score;
     resultMessage.textContent = getMessage(score);
     showScreen("result");
@@ -388,12 +470,56 @@ startBtn.addEventListener("click", function () {
     startGame();
 });
 
+skipBtn.addEventListener("click",function(){
+    seconds = seconds + 15;
+    puzzleTimeText.textContent = seconds;
+    makeBoard();
+    drawBoard();
+});
 
+for(let j = 0; j < 10; j++){
+    boxButtons[j].addEventListener("click",function(){
+        const row = Math.floor(j / 2);
+        if(boxTile[j] !== -1 && rowState[row] !== "right"){
+            boxTile[j] = -1;
+            rowState[row] = "";
+            drawBoard();
+        }
+    });
+}
 
+for(let i = 0; i < 10; i++){
+    tileElements[i].addEventListener("dragstart",function(event){
+        draggedTile= i;
+        event.dataTransfer.setData("text",i);
+    });
+    tileElements[i].addEventListener("dragend",function(){
+        draggedTile = -1;
+        for(const box of boxButtons){
+            box.classList.remove("over");
+        }
+    });
+}
 
-
-
-
+for(let j=0; j<10; j++){
+    boxButtons[j].addEventListener("dragover",function(event){
+        if(boxTile[j] === -1){
+            event.preventDefault();
+            boxButtons[j].classList.add("over");
+        }
+    });
+    boxButtons[j].addEventListener("dragleave",function(){
+        boxButtons[j].classList.remove("over");
+    });
+    boxButtons[j].addEventListener("drop", function(event){
+        event.preventDefault();
+        boxButtons[j].classList.remove("over");
+        if(draggedTile !== -1){
+            placeTile(draggedTile, j);
+        }
+        draggedTile = -1;
+    });
+}
 
 
 
