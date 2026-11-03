@@ -142,6 +142,71 @@ function makeOptions(answer){
     return options;
 }
 
+// puzzle game
+const opsByLevel = {
+    easy: ["+", "-"],
+    medium: ["+", "-", "×"],
+    hard: ["+", "-", "×", "÷"]
+};
+
+function makeBoard(){
+    const numbers = [];
+    rowOps = [];
+    rowResults = [];
+    rowState = [];
+    boxTile = [];
+    for(let r = 0; r<5; r++){
+        const op = opsByLevel[difficulty][randomNumber(0, opsByLevel[difficulty].length - 1)];
+        const max = sizes[difficulty].table;
+        let left;
+        let right;
+        let result;
+        if(op === "+"){
+            left = randomNumber(1,max);
+            right = randomNumber(1,max);
+            result=left+right;
+        } else if (op === "-"){
+            left = randomNumber(2,max);
+            right = randomNumber(1, left - 1);
+            result = left - right;
+        } else if (op === "×"){
+            left = randomNumber(2,max);
+            right = randomNumber(2,max);
+            result = left * right;
+        } else if(op === "÷"){
+            right = randomNumber(2,max);
+            left = randomNumber(2,max);
+            left = right * result;
+        }
+        rowOps.push(op);
+        rowResults.push(result);
+        rowState.push("");
+        numbers.push(left,right);
+    }
+    tileNumbers = numbers;
+    tileNumbers.sort(function(){
+        return Math.random() - 0.5;
+    });
+    for(let i = 0; i<10; i++){
+        boxTile.push(-1);
+    }
+}
+
+function drawBoard(){
+    for(let r = 0; r<5; r++){
+        opTexts[r].textContent = rowOps[r];
+        resultTexts[r].textContent = rowResults[r];
+        equationRows[r].className = "equation" + rowState[r]; 
+    }
+    for(let j = 0; j<10; j++){
+        boxButtons[j].textContent = boxTile[j] === -1 ? "" : tileNumbers[boxTile[j]];
+    }
+    for(let i = 0; i<10; i++){
+        tileElements[i].textContent = tileNumbers[i];
+        tileElements[i].classList.toggle("used", boxTile.includes(i));
+    }
+}
+    
 function getQuestionTime(){
     return Math.max(3, 5 - Math.floor(score / 5)) * 1000;
 }
