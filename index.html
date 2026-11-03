@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Marks</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Young+Serif&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Young+Serif&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <h1>Quick Marks</h1>
@@ -19,19 +23,19 @@
     <section id="home">
         <h2>Pick a paper</h2>
         <p>Three ways to get faster at mental maths.</p>
-        <button id="survivalBtn" class="gameCard">
+        <button id="survivalBtn" class="gameCard" data-game="survival">
             <strong>Survival</strong>
             <span>One wrong answer ends the run</span>
             <span>Best: <b id="survivalBest">0</b></span>
         </button>
 
-        <button id="timeAttackBtn" class="gameCard">
+        <button id="timeAttackBtn" class="gameCard" data-game="timeAttack">
             <strong>Time Attack</strong>
             <span>Answer as many as you can</span>
             <span>Best: <b id="timeAttackBest">0</b></span>
         </button>
 
-        <button id="puzzleBtn" class="gameCard">
+        <button id="puzzleBtn" class="gameCard" data-game="puzzle">
             <strong>Equation Puzzle</strong>
             <span>Fill the boxes to make it true</span>
             <span>Best: <b id="puzzleBest">0</b></span>
@@ -83,7 +87,7 @@
             <button id="backHome" class="plainBtn">Back</button>
         </div>
     </section>
-    
+
     <section id="survival">
         <h2>Survival</h2>
         <div class="timerBar">
@@ -101,7 +105,7 @@
             <button class="option"></button>
         </div>
     </section>
-    
+
     <section id="timeAttack">
         <h2>Time Attack</h2>
         <div class="timerBar">
@@ -120,15 +124,14 @@
             <button class="option"></button>
         </div>
     </section>
-    
+
     <section id="puzzle">
-        <h2>Puzzle</h2>
+        <h2>Equation Puzzle</h2>
         <div class="stats">
             <p>Time: <b id="puzzleTimeText">0</b></p>
             <p>Solved: <b id="puzzleScoreText">0</b> / 3</p>
         </div>
-
-        <div id="equations">
+        <div>
             <div class="equation">
                 <button class="box"></button>
                 <span class="op"></span>
@@ -187,8 +190,7 @@
             <button id="skipBtn" class="plainBtn">Skip board</button>
         </div>
     </section>
-    
-    
+
     <section id="result">
         <h2>Result</h2>
         <p id="resultLabel" class="label">Your Score</p>
@@ -199,12 +201,6 @@
             <button id="resultHome" class="plainBtn">Home</button>
         </div>
     </section>
-
-
-
-
-
-
     <script src="script.js"></script>
 </body>
 </html>
