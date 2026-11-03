@@ -29,6 +29,9 @@ const resultTexts = document.querySelectorAll("#puzzle .result");
 const boardsToSolve = 3;
 const playAgain = document.getElementById("playAgain");
 const resultHome = document.getElementById("resultHome");
+const survivalBest = document.getElementById("survivalBest");
+const timeAttackBest = document.getElementById("timeAttackBest");
+const puzzleBest = document.getElementById("puzzleBest");
 
 const gameNames = {
     survival: "Survival",
@@ -59,6 +62,18 @@ let rowState = [];
 let boardsSolved = 0;
 let seconds = 0;
 
+const bestScores = {
+    survival : 0,
+    timeAttack: 0,
+    puzzle: 0
+};
+
+for(const game in bestScores){
+    const saved = localStorage.getItem("best-" + game);
+    if(saved !== null){
+        bestScores[game] = Number(saved);
+    }
+}
 
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
