@@ -20,6 +20,16 @@ const attackQuestion = document.getElementById("attackQuestion");
 const attackButtons = document.querySelectorAll("#timeAttack .option");
 const resultScore = document.getElementById("resultScore");
 const resultMessage = document.getElementById("resultMessage");
+const puzzleTimeText = document.getElementById("puzzleTimeText");
+const puzzleScoreText = document.getElementById("puzzleScoreText");
+const resultLabel = document.getElementById("resultLabel");
+const skipBtn = document.getElementById("skipBtn");
+const equationRows = document.querySelectorAll("#puzzle .equation");
+const boxButtons = document.querySelectorAll("#puzzle .box");
+const tileElements = document.querySelectorAll("#puzzle .tile");
+const opTexts = document.querySelectorAll("#puzzle .op");
+const resultTexts = document.querySelectorAll("#puzzle .result");
+const boardsToSolve = 3;
 const playAgain = document.getElementById("playAgain");
 const resultHome = document.getElementById("resultHome");
 
@@ -30,7 +40,7 @@ const gameNames={
 };
 
 const gameRules={
-    survival: "One wrong answer or a timeout ends the run.The timer gets shorter as your score grows.",
+    survival: "One wrong answer or a timeout ends the run. The timer gets shorter as your score grows.",
     timeAttack: "Answer as many as you can before time runs out. A wrong answer costs 2 seconds.",
     puzzle: "Fill every box so each equation is true. Each tile can be used once."
 };
@@ -43,6 +53,13 @@ let correctAnswer = 0;
 let timeLeft = 0;
 let totalTime = 5000;
 let timerId= null;
+let tileNumbers = [];
+let boxTile = [];
+let rowOps = [];
+let rowResults = [];
+let rowState = [];
+let boardsSolved = 0;
+let seconds = 0;
 
 
 function randomNumber(min,max){
