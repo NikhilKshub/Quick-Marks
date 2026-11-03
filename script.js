@@ -75,6 +75,12 @@ for(const game in bestScores){
     }
 }
 
+function showBest(){
+    survivalBest.textContent = bestScores.survival;
+    timeAttackBest.textContent = bestScores.timeAttack;
+    puzzleBest.textContent = bestScores.puzzle === 0 ? "none yet" : bestScores.puzzle + "s";
+}
+
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -445,6 +451,22 @@ function openSetup(game) {
     showScreen("setup");
 }
 showScreen("home");
+showBest();
+
+function saveBest(game, value){
+    let better;
+    if(game === "puzzle"){
+        better = bestScores.puzzle === 0 || value<bestScores.puzzle;
+    } else {
+        better = value>bestScores[game];
+    }
+    if(better){
+        bestScores[game] = value;
+        localStorage.setItem("best-" + game, value);
+        showBest();
+    }
+    return better;
+}
 
 for (const card of document.querySelectorAll(".gameCard")) {
     card.addEventListener("click", function () {
