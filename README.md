@@ -3,12 +3,14 @@ A mental maths trainer with three timed games.
 **Live demo:** [LIVE DEMO](https://nikhilkshub.github.io/Quick-Marks/)
 
 ## Screenshots
-### Home and Survival
-![Home screen](screenshots/home.png) ![Survival game](screenshots/survival.png)
-
-### Time Attack and Equation Puzzle
-![Time Attack game](screenshots/time-attack.png) ![Equation Puzzle game](screenshots/puzzle.png)
-
+### Home
+![Home screen](screenshots/home.png)
+### Survival
+![Survival game](screenshots/survival.png)
+### Time Attack 
+![Time Attack game](screenshots/time-attack.png) 
+### Equation Puzzle
+![Equation Puzzle game](screenshots/puzzle.png)
 ### Result screen
 ![Result screen](screenshots/result.png)
 
