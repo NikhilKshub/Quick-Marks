@@ -42,7 +42,7 @@ const gameNames={
 const gameRules={
     survival: "One wrong answer or a timeout ends the run. The timer gets shorter as your score grows.",
     timeAttack: "Answer as many as you can before time runs out. A wrong answer costs 2 seconds.",
-    puzzle: "Fill every box so each equation is true. Each tile can be used once."
+    puzzle: "Drag each tile into a box. Make all five equations true. Solve 3 boards as fast as you can. Skipping adds 15 seconds."
 };
 
 let chosenGame = "";
@@ -175,7 +175,7 @@ function makeBoard(){
             result = left * right;
         } else if(op === "÷"){
             right = randomNumber(2,max);
-            left = randomNumber(2,max);
+            result = randomNumber(2,max);
             left = right * result;
         }
         rowOps.push(op);
@@ -196,7 +196,7 @@ function drawBoard(){
     for(let r = 0; r<5; r++){
         opTexts[r].textContent = rowOps[r];
         resultTexts[r].textContent = rowResults[r];
-        equationRows[r].className = "equation" + rowState[r]; 
+        equationRows[r].className = "equation " + rowState[r]; 
     }
     for(let j = 0; j<10; j++){
         boxButtons[j].textContent = boxTile[j] === -1 ? "" : tileNumbers[boxTile[j]];
@@ -206,7 +206,22 @@ function drawBoard(){
         tileElements[i].classList.toggle("used", boxTile.includes(i));
     }
 }
-    
+
+function startPuzzle(){
+    boardsSolved = 0;
+    puzzleScoreText.textContent = 0;
+    seconds = 0;
+    puzzleTimeText.textContent = 0;
+    makeBoard();
+    drawBoard();
+    showScreen("puzzle");
+    clearInterval(timerId);
+    timerId = setInterval(function(){
+        seconds = seconds + 1;
+        puzzleTimeText.textContent = seconds;
+    }, 1000);
+}
+
 function getQuestionTime(){
     return Math.max(3, 5 - Math.floor(score / 5)) * 1000;
 }
@@ -318,10 +333,11 @@ function startGame(){
         startSurvival();
     } else if(chosenGame === "timeAttack"){
         startAttack();
+    }  else if(chosenGame === "puzzle"){
+        startPuzzle();
     } else{
         showScreen(chosenGame);
     }
-    
 }
 
 
