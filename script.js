@@ -17,6 +17,7 @@ const attackQuestion = document.getElementById("attackQuestion");
 const attackButtons = document.querySelectorAll("#timeAttack .option");
 const resultScore = document.getElementById("resultScore");
 const resultMessage = document.getElementById("resultMessage");
+const newBest = document.getElementById("newBest");
 const puzzleTimeText = document.getElementById("puzzleTimeText");
 const puzzleScoreText = document.getElementById("puzzleScoreText");
 const resultLabel = document.getElementById("resultLabel");
@@ -374,6 +375,8 @@ function endPuzzle() {
     resultLabel.textContent = "Your time";
     resultScore.textContent = seconds + "s";
     resultMessage.textContent = getPuzzleMessage(seconds);
+    const isRecord = saveBest("puzzle", seconds);
+    newBest.classList.toggle("hidden",!isRecord);
     setTimeout(function () {
         showScreen("result");
     }, 800);
@@ -418,6 +421,8 @@ function endGame() {
     resultLabel.textContent = "Your score";
     resultScore.textContent = score;
     resultMessage.textContent = getMessage(score);
+    const isRecord = saveBest(chosenGame, score);
+    newBest.classList.toggle("hidden", !isRecord);
     showScreen("result");
 }
 

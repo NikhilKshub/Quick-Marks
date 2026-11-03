@@ -289,3 +289,16 @@ p{margin:0; line-height:1.5;}
     border-color:var(--red);
     background: #F7E1DE;
 }
+
+.stamp {
+    width: fit-content;
+    margin-top: 16px;
+    padding: 6px 14px;
+    border: 3px solid var(--red);
+    color: var(--red);
+    font-weight: 800;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transform: rotate(-4deg);
+}
